@@ -1,102 +1,198 @@
-# 🥗 MacroSnap — AI Nutrition Buddy
+# 🥗 MacroSnap — AI Nutrition Assistant
 
-MacroSnap is an AI-powered nutrition assistant that helps users understand what they are eating through **text descriptions and meal photos**.
+> **An AI-powered nutrition assistant that analyzes meal descriptions and food images to estimate calories and macronutrients.**
 
-It uses **Google Gemini AI** to identify foods and provide approximate calorie and macronutrient estimates. Users can also generate a nutrition summary and send it to their email using **Gmail SMTP**.
+MacroSnap is a **multimodal AI nutrition assistant** built with **Python, Streamlit, and Google Gemini**. Users can describe what they ate or upload a photo of their meal, and MacroSnap analyzes it to provide estimated **calories, protein, carbohydrates, and fat**.
 
----
-
-## ✨ Features
-
-* 📸 AI-powered meal photo analysis
-* 💬 Natural-language food and nutrition conversations
-* 🔥 Estimated calorie calculation
-* 💪 Protein, carbohydrate and fat estimates
-* 📝 Automatic nutrition summary generation
-* 📧 Send nutrition summaries through Gmail
-* 👤 Simple user onboarding
-* 🔄 Start a new nutrition-tracking session
-* 📱 Clean and responsive Streamlit interface
-* 🔐 API credentials stored securely using Streamlit secrets
+The application also generates a combined nutrition summary for the current session and can send the summary to a configured email address using **Gmail SMTP**.
 
 ---
 
-## 🧠 How It Works
+## 🚀 Live Demo
+
+### 👉 [Try MacroSnap Live](https://macrosnap-zee6qx85svjs9sny9yrvat.streamlit.app/)
+
+### 💻 [View Source Code on GitHub](https://github.com/HrushikeshNimmala/MacroSnap)
+
+---
+
+## 📸 What MacroSnap Does
+
+MacroSnap provides a simple workflow:
 
 ```text
-User
- │
- ├── Describes a meal
- │
- └── Uploads a meal photo
-          │
-          ▼
-     MacroSnap
-          │
-          ▼
-      Gemini AI
-          │
-          ▼
- Food Identification
-          │
-          ▼
- Calories + Macros
-          │
-          ▼
- Nutrition Summary
-          │
-          ▼
-      Gmail SMTP
-          │
-          ▼
-      User Email
+Enter Your Name
+       ↓
+Describe Your Meal / Upload Meal Image
+       ↓
+Google Gemini AI Analysis
+       ↓
+Food Identification
+       ↓
+Calories + Protein + Carbs + Fat
+       ↓
+Discuss More Meals
+       ↓
+Generate Nutrition Summary
+       ↓
+Send Summary via Email
 ```
 
 ---
 
-## 🛠️ Technology Stack
+## ✨ Key Features
 
-| Technology    | Purpose                             |
-| ------------- | ----------------------------------- |
-| Python        | Application development             |
-| Streamlit     | Web application interface           |
-| Google Gemini | AI text and image analysis          |
-| Gmail SMTP    | Email delivery                      |
-| Twilio        | WhatsApp integration/testing        |
-| Git & GitHub  | Version control and project hosting |
+### 🥗 Multimodal Meal Analysis
+
+Users can analyze meals in two ways:
+
+* 📝 **Text input** — Describe the food you ate.
+* 📷 **Image input** — Upload a photo of your meal.
+
+Gemini analyzes the available information and produces an approximate nutrition breakdown.
+
+### 🔥 Calorie Estimation
+
+MacroSnap estimates the calories contained in the meal based on the detected food items and their apparent portions.
+
+### 💪 Macronutrient Estimation
+
+The application estimates:
+
+* Protein
+* Carbohydrates
+* Fat
+
+### 📊 Session Nutrition Summary
+
+MacroSnap can summarize the meals discussed during the current conversation and provide combined calorie and macro estimates.
+
+### 📧 Email Delivery
+
+Users can send their generated nutrition summary to a configured email address using **Gmail SMTP**.
+
+### 💬 Conversational AI
+
+MacroSnap maintains the current conversation context so users can discuss multiple meals within the same session.
+
+### 🎨 Clean User Interface
+
+The application provides:
+
+* Personalized welcome message
+* Simple onboarding
+* Chat-based interaction
+* Meal image upload
+* Nutrition summary section
+* Email delivery
+* Nutrition disclaimer
+* New-session option
 
 ---
 
-## 📂 Project Structure
+## 🧠 AI Capabilities
+
+MacroSnap uses **Google Gemini** for multimodal AI processing.
+
+The model is used for:
 
 ```text
-AI-Vision-ChatBot/
+Text Understanding
+       +
+Image Understanding
+       ↓
+Food Identification
+       ↓
+Nutrition Estimation
+       ↓
+Conversational Response
+       ↓
+Nutrition Summary
+```
+
+The application does not train a custom machine-learning model. Instead, it uses a generative AI model through the Gemini API.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology                    | Purpose                                           |
+| ----------------------------- | ------------------------------------------------- |
+| **Python**                    | Core application development                      |
+| **Streamlit**                 | Web application and UI                            |
+| **Google Gemini**             | Multimodal AI analysis                            |
+| **Google GenAI SDK**          | Gemini API integration                            |
+| **Gmail SMTP**                | Nutrition summary email delivery                  |
+| **Twilio**                    | WhatsApp configuration / future messaging support |
+| **Git**                       | Version control                                   |
+| **GitHub**                    | Source code hosting                               |
+| **Streamlit Community Cloud** | Cloud deployment                                  |
+
+---
+
+## 📁 Project Structure
+
+```text
+MacroSnap/
 │
 ├── .streamlit/
-│   ├── secrets.toml
 │   └── secrets.toml.example
 │
 ├── app.py
 ├── prompts.py
 ├── requirements.txt
+├── README.md
 ├── .gitignore
-└── README.md
+│
+└── venv/
 ```
+
+### Main Files
+
+#### `app.py`
+
+Contains the main Streamlit application including:
+
+* User onboarding
+* Gemini client
+* Chat interface
+* Text meal analysis
+* Image meal analysis
+* Nutrition summary
+* Gmail SMTP integration
+* Session management
+* UI styling
+
+#### `prompts.py`
+
+Contains the AI prompts used to control MacroSnap's behavior:
+
+* `SYSTEM_PROMPT`
+* `WELCOME_MESSAGE_TEMPLATE`
+* `SUMMARY_REQUEST_PROMPT`
+
+#### `requirements.txt`
+
+Contains the Python dependencies required to run the application.
+
+#### `.streamlit/secrets.toml.example`
+
+Provides an example structure for configuring API keys and credentials without exposing real secrets.
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Run the Project Locally
 
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/HrushikeshNimmala/MacroSnap.git
 ```
 
 ### 2. Open the project
 
 ```bash
-cd AI-Vision-ChatBot
+cd MacroSnap
 ```
 
 ### 3. Create a virtual environment
@@ -105,15 +201,15 @@ cd AI-Vision-ChatBot
 python -m venv venv
 ```
 
-### 4. Activate the virtual environment
+### 4. Activate the environment
 
-#### Windows PowerShell
+For Windows PowerShell:
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-If PowerShell blocks activation:
+If PowerShell blocks the activation script:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
@@ -131,9 +227,7 @@ Then:
 pip install -r requirements.txt
 ```
 
----
-
-## 🔑 Configuration
+### 6. Configure secrets
 
 Create:
 
@@ -141,36 +235,24 @@ Create:
 .streamlit/secrets.toml
 ```
 
-Add your private credentials:
+Do **not** upload this file to GitHub.
+
+Example structure:
 
 ```toml
-GEMINI_API_KEY = "your-gemini-api-key"
+GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
 
-TWILIO_ACCOUNT_SID = "your-twilio-account-sid"
-TWILIO_AUTH_TOKEN = "your-twilio-auth-token"
-TWILIO_WHATSAPP_FROM = "whatsapp:+your-twilio-number"
-TWILIO_WHATSAPP_TO = "your-whatsapp-number"
+TWILIO_ACCOUNT_SID = "YOUR_TWILIO_ACCOUNT_SID"
+TWILIO_AUTH_TOKEN = "YOUR_TWILIO_AUTH_TOKEN"
+TWILIO_WHATSAPP_FROM = "YOUR_TWILIO_WHATSAPP_FROM"
+TWILIO_WHATSAPP_TO = "YOUR_TWILIO_WHATSAPP_TO"
 
-GMAIL_SENDER = "your-gmail@gmail.com"
-GMAIL_APP_PASSWORD = "your-gmail-app-password"
-GMAIL_RECIPIENT = "recipient@gmail.com"
+GMAIL_SENDER = "YOUR_GMAIL_ADDRESS"
+GMAIL_APP_PASSWORD = "YOUR_GMAIL_APP_PASSWORD"
+GMAIL_RECIPIENT = "YOUR_RECIPIENT_EMAIL"
 ```
 
-**Never commit your real `secrets.toml` file to GitHub.**
-
-The repository includes:
-
-```text
-.streamlit/secrets.toml.example
-```
-
-as a safe configuration template.
-
----
-
-## ▶️ Run the Application
-
-Start MacroSnap with:
+### 7. Run the application
 
 ```bash
 streamlit run app.py
@@ -180,108 +262,279 @@ The application will open in your browser.
 
 ---
 
-## 📸 Using MacroSnap
+## 🔐 Secret Management
 
-### Step 1 — Start
+MacroSnap uses **Streamlit Secrets** to protect sensitive credentials.
 
-Enter your name and WhatsApp number.
+The following information should never be committed to GitHub:
 
-### Step 2 — Describe your meal
+* Gemini API key
+* Twilio Account SID
+* Twilio Auth Token
+* Gmail App Password
+* Private email configuration
 
-For example:
-
-```text
-I ate two rotis with chicken curry and a bowl of rice.
-```
-
-MacroSnap will provide an approximate nutrition estimate.
-
-### Step 3 — Upload a meal photo
-
-Upload a JPG, JPEG or PNG image of your meal.
-
-Gemini analyzes the image and estimates:
-
-* Food items
-* Calories
-* Protein
-* Carbohydrates
-* Fat
-
-### Step 4 — Generate Summary
-
-Click:
-
-**📝 Generate Nutrition Summary**
-
-MacroSnap creates a combined summary of the conversation.
-
-### Step 5 — Email the Summary
-
-Click:
-
-**📧 Send Summary by Email**
-
-The nutrition summary is delivered through Gmail SMTP.
-
----
-
-## ⚠️ Nutrition Disclaimer
-
-MacroSnap provides **AI-generated estimates**, not medically verified nutritional information.
-
-Actual calories and macronutrients may vary depending on:
-
-* Portion size
-* Ingredients
-* Cooking method
-* Recipe
-* Food preparation
-
-MacroSnap should not be used as a substitute for professional medical or dietary advice.
-
----
-
-## 🔐 Security
-
-Private credentials should be stored in:
+The real file:
 
 ```text
 .streamlit/secrets.toml
 ```
 
-The file is excluded from Git using `.gitignore`.
+is excluded through `.gitignore`.
 
-Never expose:
+Only:
 
-* Gemini API keys
-* Twilio Auth Tokens
-* Gmail App Passwords
-* Other private credentials
+```text
+.streamlit/secrets.toml.example
+```
+
+is included in the repository.
 
 ---
 
-## 🚀 Future Improvements
+## 📧 Gmail SMTP Integration
 
-Potential future enhancements include:
+MacroSnap currently uses Gmail SMTP to deliver nutrition summaries.
 
-* 📊 Daily nutrition dashboard
-* 📅 Meal history
+The workflow is:
+
+```text
+Generate Nutrition Summary
+          ↓
+Create Email
+          ↓
+Gmail SMTP
+          ↓
+Recipient Email
+```
+
+For Gmail SMTP authentication, an **App Password** is used instead of storing the normal Gmail account password.
+
+---
+
+## 🧠 Prompt Engineering
+
+MacroSnap separates its AI instructions into `prompts.py`.
+
+### System Prompt
+
+The system prompt defines MacroSnap as a nutrition assistant and instructs the model to focus on:
+
+* Food
+* Meals
+* Nutrition
+* Calories
+* Macronutrients
+
+### Welcome Prompt
+
+The welcome message is personalized using the user's name.
+
+### Summary Prompt
+
+The summary prompt instructs Gemini to combine meals discussed during the session and produce a concise nutrition summary.
+
+This separation makes the AI behavior easier to maintain and modify.
+
+---
+
+## 💻 Example Interaction
+
+### User Input
+
+```text
+2 eggs, 2 chapatis and a bowl of curd
+```
+
+### MacroSnap
+
+```text
+What it appears to be:
+2 eggs, 2 chapatis and curd
+
+Estimated Calories:
+~430 kcal
+
+Estimated Macros:
+Protein: ~23g
+Carbs: ~48g
+Fat: ~15g
+```
+
+The values are estimates and can vary depending on portion size, ingredients, and preparation method.
+
+---
+
+## 📷 Image-Based Analysis
+
+Users can upload supported meal image formats:
+
+```text
+.jpg
+.jpeg
+.png
+```
+
+MacroSnap sends the image information to Gemini for multimodal analysis.
+
+The AI attempts to identify:
+
+* Food items
+* Approximate portions
+* Calories
+* Protein
+* Carbohydrates
+* Fat
+
+---
+
+## ☁️ Deployment
+
+MacroSnap is deployed using **Streamlit Community Cloud**.
+
+### Deployment Architecture
+
+```text
+                 GitHub
+                   │
+                   ▼
+        Streamlit Community Cloud
+                   │
+                   ▼
+            MacroSnap App
+                   │
+          ┌────────┴────────┐
+          ▼                 ▼
+      Gemini API        Gmail SMTP
+          │                 │
+          ▼                 ▼
+   Meal Analysis       Email Summary
+```
+
+### Live Application
+
+👉 **[Open MacroSnap](https://macrosnap-zee6qx85svjs9sny9yrvat.streamlit.app/)**
+
+---
+
+## 🛡️ Limitations & Disclaimer
+
+MacroSnap provides **AI-generated nutritional estimates**.
+
+The results are not guaranteed to be exact because nutrition values depend on factors such as:
+
+* Portion size
+* Ingredients
+* Cooking method
+* Recipe
+* Brand
+* Food preparation
+
+MacroSnap should not be considered a medical or clinical nutrition tool and should not replace advice from a qualified healthcare or nutrition professional.
+
+---
+
+## 🔒 Security Practices
+
+This project follows basic secret-management practices:
+
+* API keys are stored using Streamlit Secrets.
+* Gmail App Password is not hard-coded.
+* Twilio credentials are not committed.
+* `.streamlit/secrets.toml` is ignored by Git.
+* Only a secrets example file is publicly available.
+
+---
+
+## 📌 Future Improvements
+
+Planned or possible enhancements include:
+
+* 📱 Mobile application
+* 👤 User authentication
+* 🗄️ Persistent nutrition history
+* 📈 Weekly/monthly nutrition dashboards
 * 🎯 Personalized calorie goals
-* 📈 Weekly nutrition analytics
 * 🥗 Personalized meal recommendations
-* 👥 User accounts
-* 📱 Improved mobile experience
-* 💬 Production WhatsApp integration
-* 🗄️ Database-backed meal history
-* 🔔 Nutrition reminders
+* 🏃 Exercise and activity tracking
+* 🔔 Meal reminders
+* 📊 Nutrition progress charts
+* 🤖 Improved portion-size estimation
+* 💬 Full WhatsApp messaging integration
+* ☁️ Database-backed user profiles
 
 ---
 
-## 👨‍💻 Project
+## 🎓 Project Information
 
-**MacroSnap — AI Nutrition Buddy**
+**Project Name:** MacroSnap
 
-Built using Python, Streamlit, Gemini AI and Gmail SMTP.
+**Project Type:** AI / Generative AI / Multimodal Application
 
-> Eat smarter. Track better. 🥗💪
+**Domain:** Nutrition & Health Technology
+
+**Developer:** Hrushikesh Nimmala
+
+**Degree:** B.Tech — Computer Science and Engineering
+
+**Expected Graduation:** 2027
+
+---
+
+## 💼 Skills Demonstrated
+
+Through this project, the following technical concepts are demonstrated:
+
+* Python
+* Streamlit
+* Generative AI
+* Google Gemini API
+* Multimodal AI
+* Prompt Engineering
+* Image Understanding
+* API Integration
+* SMTP Email Integration
+* Git
+* GitHub
+* Cloud Deployment
+* Secret Management
+* Session State
+* UI Development
+* Debugging
+* Error Handling
+
+---
+
+## 📚 Learning Outcomes
+
+Building MacroSnap provided practical experience in:
+
+1. Integrating a generative AI API into a real application.
+2. Working with multimodal AI for image and text inputs.
+3. Designing prompts for consistent AI responses.
+4. Building interactive applications with Streamlit.
+5. Managing API credentials securely.
+6. Integrating Gmail SMTP for automated email delivery.
+7. Debugging API and deployment issues.
+8. Deploying a Python application to the cloud.
+9. Managing source code using Git and GitHub.
+10. Turning an AI prototype into a publicly accessible application.
+
+---
+
+## 🔗 Project Links
+
+| Resource             | Link                                                                          |
+| -------------------- | ----------------------------------------------------------------------------- |
+| 🚀 Live Demo         | [MacroSnap](https://macrosnap-zee6qx85svjs9sny9yrvat.streamlit.app/)          |
+| 💻 GitHub Repository | [HrushikeshNimmala/MacroSnap](https://github.com/HrushikeshNimmala/MacroSnap) |
+
+---
+
+## ⭐ Project
+
+If you find this project useful or interesting, consider giving the repository a ⭐ on GitHub.
+
+---
+
+**🥗 MacroSnap — Making nutrition tracking simpler with Generative AI.**
